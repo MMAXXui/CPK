@@ -82,6 +82,28 @@
                              0 0 60px rgba(0, 255, 255, 0.4);
             }
         }
+
+        /* Responsive styling for mobile devices */
+        @media (max-width: 600px) {
+            .title {
+                font-size: 2.5em;
+                letter-spacing: 4px;
+            }
+
+            .subtitle {
+                font-size: 1em;
+                letter-spacing: 2px;
+            }
+
+            .corner-text {
+                font-size: 0.7em;
+            }
+
+            body {
+                padding: 20px;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -139,6 +161,12 @@
 
         // Run draw function at an interval for animation effect
         setInterval(draw, 33);
+
+        // Update canvas size on window resize
+        window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
     </script>
 </body>
 </html>
