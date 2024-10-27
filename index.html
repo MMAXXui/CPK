@@ -77,17 +77,18 @@
                              0 0 30px rgba(0, 255, 255, 0.3);
             }
             to {
-                text-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 
-                             0 0 40px rgba(0, 255, 255, 0.6), 
-                             0 0 60px rgba(0, 255, 255, 0.4);
+                text-shadow: 0 0 20px rgba(0, 255, 255, 1), 
+                             0 0 40px rgba(0, 255, 255, 0.8), 
+                             0 0 60px rgba(0, 255, 255, 0.6);
             }
         }
 
-        /* Responsive styling for mobile devices */
+        /* Enhanced glow effect for mobile */
         @media (max-width: 600px) {
             .title {
                 font-size: 2.5em;
                 letter-spacing: 4px;
+                animation: frostyGlowMobile 3s infinite alternate;
             }
 
             .subtitle {
@@ -102,6 +103,20 @@
             body {
                 padding: 20px;
                 text-align: center;
+            }
+
+            /* Mobile-specific glow animation */
+            @keyframes frostyGlowMobile {
+                from {
+                    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 
+                                 0 0 30px rgba(0, 255, 255, 0.7), 
+                                 0 0 40px rgba(0, 255, 255, 0.6);
+                }
+                to {
+                    text-shadow: 0 0 30px rgba(0, 255, 255, 1), 
+                                 0 0 50px rgba(0, 255, 255, 0.9), 
+                                 0 0 70px rgba(0, 255, 255, 0.8);
+                }
             }
         }
     </style>
