@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C.P.K Chilly Design</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #004e92, #000428);
+            overflow: hidden;
+            color: #e0f7ff;
+        }
+
+        /* Falling numbers canvas */
+        #matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+        }
+
+        /* Main container */
+        .container {
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 
+                         0 0 20px rgba(0, 255, 255, 0.4), 
+                         0 0 30px rgba(0, 255, 255, 0.2);
+        }
+
+        /* Main title styling */
+        .title {
+            font-size: 5em;
+            font-weight: bold;
+            letter-spacing: 8px;
+            margin-bottom: 10px;
+            animation: frostyGlow 3s infinite alternate;
+        }
+
+        /* Subtitle styling */
+        .subtitle {
+            font-size: 1.2em;
+            letter-spacing: 4px;
+            color: #a0c4ff;
+            opacity: 0.8;
+        }
+
+        /* Small corner text */
+        .corner-text {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.8em;
+            color: #0ff;
+            opacity: 0.6;
+        }
+
+        /* Frosty animation */
+        @keyframes frostyGlow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 255, 0.7), 
+                             0 0 20px rgba(0, 255, 255, 0.5), 
+                             0 0 30px rgba(0, 255, 255, 0.3);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(0, 255, 255, 0.9), 
+                             0 0 40px rgba(0, 255, 255, 0.6), 
+                             0 0 60px rgba(0, 255, 255, 0.4);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling numbers canvas -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="title">C.P.K</div>
+        <div class="subtitle">college pilote kef</div>
+    </div>
+
+    <!-- Corner text -->
+    <div class="corner-text">by Abdelhay lol</div>
+
+    <script>
+        // Matrix effect setup
+        const canvas = document.getElementById("matrix");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Characters to use for the falling numbers
+        const numbers = "1234567890";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        // Array to store the positions of characters in each column
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        // Drawing function
+        function draw() {
+            // Background color with slight transparency for fade effect
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Font and color for falling characters
+            ctx.fillStyle = "#0ff";
+            ctx.font = fontSize + "px Arial";
+
+            // Draw characters
+            for (let i = 0; i < drops.length; i++) {
+                const text = numbers[Math.floor(Math.random() * numbers.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Reset drop to the top randomly to simulate continuous fall
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // Run draw function at an interval for animation effect
+        setInterval(draw, 33);
+    </script>
+</body>
+</html>
